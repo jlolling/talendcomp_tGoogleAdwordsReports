@@ -36,14 +36,14 @@ import org.apache.log4j.Logger;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.client.reporting.ReportingConfiguration;
-import com.google.api.ads.adwords.lib.jaxb.v201409.DateRange;
-import com.google.api.ads.adwords.lib.jaxb.v201409.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201409.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201409.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201506.DateRange;
+import com.google.api.ads.adwords.lib.jaxb.v201506.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201506.Selector;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
-import com.google.api.ads.adwords.lib.utils.v201409.ReportDownloader;
+import com.google.api.ads.adwords.lib.utils.v201506.ReportDownloader;
 import com.google.api.ads.common.lib.auth.OfflineCredentials;
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
 import com.google.api.client.auth.oauth2.Credential;
@@ -288,7 +288,7 @@ public class AdWordsReport {
 			// report definition configuration
 			buildAWQLFromReportDefinition();
 		}
-		if (useAWQL || sendReportAsAWQL) {
+		if (sendReportAsAWQL || useAWQL) {
 			if (awql == null) {
 				throw new IllegalStateException("No AWQL has been set!");
 			}

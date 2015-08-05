@@ -36,7 +36,7 @@
 	<properties>
 		<project.oauth.version>1.20.0</project.oauth.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.adwords.version>1.38.0</project.adwords.version>
+		<project.adwords.version>2.3.0</project.adwords.version>
 	</properties>
 	<organization>
 		<name>Jan Lolling</name>
@@ -89,5 +89,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<version>2.0</version>
+	<version>3.0</version>
 </project>
