@@ -36,14 +36,14 @@ import org.apache.log4j.Logger;
 
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
 import com.google.api.ads.adwords.lib.client.reporting.ReportingConfiguration;
-import com.google.api.ads.adwords.lib.jaxb.v201601.DateRange;
-import com.google.api.ads.adwords.lib.jaxb.v201601.DownloadFormat;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinition;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionDateRangeType;
-import com.google.api.ads.adwords.lib.jaxb.v201601.ReportDefinitionReportType;
-import com.google.api.ads.adwords.lib.jaxb.v201601.Selector;
+import com.google.api.ads.adwords.lib.jaxb.v201607.DateRange;
+import com.google.api.ads.adwords.lib.jaxb.v201607.DownloadFormat;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinition;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionDateRangeType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.ReportDefinitionReportType;
+import com.google.api.ads.adwords.lib.jaxb.v201607.Selector;
 import com.google.api.ads.adwords.lib.utils.ReportDownloadResponse;
-import com.google.api.ads.adwords.lib.utils.v201601.ReportDownloader;
+import com.google.api.ads.adwords.lib.utils.v201607.ReportDownloader;
 import com.google.api.ads.common.lib.auth.OfflineCredentials;
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
 import com.google.api.client.auth.oauth2.Credential;
@@ -86,7 +86,6 @@ public class AdWordsReport {
 	private String fields = null;
 	private String startDateStr = null;
 	private String endDateStr = null;
-	private boolean includeZeroImpressions = false;
 	private boolean useAWQL = false;
 	private String awql = null;
 	private int reportDownloadTimeout = 3000;
@@ -405,7 +404,6 @@ public class AdWordsReport {
 		reportDefinition.setReportName(reportName);
 		reportDefinition.setDateRangeType(ReportDefinitionDateRangeType.fromValue("CUSTOM_DATE"));
 		reportDefinition.setDownloadFormat(downloadFormat);
-		reportDefinition.setIncludeZeroImpressions(includeZeroImpressions);
 		return reportDefinition;
 	}
 	
@@ -502,10 +500,6 @@ public class AdWordsReport {
 		if (isEmpty(reportType) == false) {
 			this.reportType = reportType;
 		}
-	}
-
-	public void setIncludeZeroImpressions(boolean includeZeroImpressions) {
-		this.includeZeroImpressions = includeZeroImpressions;
 	}
 
 	public void setDeveloperToken(String developerToken) {

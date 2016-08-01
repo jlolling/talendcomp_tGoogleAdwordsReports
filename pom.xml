@@ -1,11 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>jlo.talendcomp</groupId>
-	<artifactId>jlo.talendcomp.google.adwordsreport</artifactId>
+	<groupId>de.jlo.talendcomp.google</groupId>
+	<artifactId>jlo-talendcomp-google-adwordsreport</artifactId>
 	<name>GoogleAdWords Talend Component</name>
-	<repositories>
-	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.api-ads</groupId>
@@ -36,7 +34,7 @@
 	<properties>
 		<project.oauth.version>1.21.0</project.oauth.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.adwords.version>2.13.0</project.adwords.version>
+		<project.adwords.version>2.17.0</project.adwords.version>
 	</properties>
 	<organization>
 		<name>Jan Lolling</name>
@@ -54,19 +52,13 @@
 		        </configuration>
 		      </plugin>
 			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>make-assembly</id> <!-- this is used for inheritance merges -->
-						<phase>package</phase> <!-- bind to the packaging phase -->
+						<phase>package</phase>
 						<goals>
-							<goal>single</goal>
+							<goal>shade</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -89,5 +81,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<version>5.0</version>
+	<version>6.0</version>
 </project>
