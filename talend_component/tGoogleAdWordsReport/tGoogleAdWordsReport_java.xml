@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <COMPONENT>
-	<HEADER PLATEFORM="ALL" SERIAL="" VERSION="6.0" STATUS="PROD"
-		COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20160801A"
+	<HEADER PLATEFORM="ALL" SERIAL="" VERSION="6.1" STATUS="PROD"
+		COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20161112A"
 		STARTABLE="true">
 		<SIGNATURE />
 	</HEADER>
@@ -145,7 +145,7 @@ during 20150106,20150106"</DEFAULT>
 	<CODEGENERATION>
 		<IMPORTS>
 			<IMPORT NAME="Google_AdWords_Report"
-				MODULE="jlo-talendcomp-google-adwordsreport-6.0.jar"
+				MODULE="cimt-talendcomp-google-adwordsreport-6.1.jar"
 				REQUIRED="true" />
 		</IMPORTS>
 	</CODEGENERATION>

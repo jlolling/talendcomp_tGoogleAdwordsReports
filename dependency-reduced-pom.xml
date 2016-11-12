@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.jlo.talendcomp.google</groupId>
-  <artifactId>jlo-talendcomp-google-adwordsreport</artifactId>
+  <groupId>de.cimt.talendcomp.google</groupId>
+  <artifactId>cimt-talendcomp-google-adwordsreport</artifactId>
   <name>GoogleAdWords Talend Component</name>
-  <version>6.0</version>
+  <version>6.1</version>
   <organization>
     <name>Jan Lolling</name>
     <url>http://jan-lolling.de</url>
@@ -49,7 +49,7 @@
     </plugins>
   </build>
   <properties>
-    <project.adwords.version>2.17.0</project.adwords.version>
+    <project.adwords.version>2.21.0</project.adwords.version>
     <project.oauth.version>1.21.0</project.oauth.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
