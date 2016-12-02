@@ -271,6 +271,10 @@ public class AdWordsReport {
 		} else {
 			throw new IllegalStateException("Not authorized. Please choose an authorization method!");
 		}
+		if (oAuth2Credential == null) {
+			error("Authentication failed. Check the Exception thrown before.", null);
+			return;
+		}
 		oAuth2Credential.refreshToken();
 		if (usePropertyFile) {
 			session = new AdWordsSession.Builder()
