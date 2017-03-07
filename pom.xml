@@ -60,7 +60,7 @@
 	<properties>
 		<project.oauth.version>1.22.0</project.oauth.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.adwords.version>2.22.0</project.adwords.version>
+		<project.adwords.version>3.1.1</project.adwords.version>
 	</properties>
 	<organization>
 		<name>Jan Lolling</name>
@@ -71,22 +71,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>de.cimt.talendcomp</groupId>
 				<artifactId>cimt-talendcomp-maven-plugin</artifactId>
-				<version>1.2</version>
+				<version>1.8</version>
 				<executions>
 					<execution>
 						<configuration>
 							<componentName>tGoogleAdWordsReport</componentName>
 						</configuration>
-						<phase>install</phase>
 						<goals>
 							<goal>component</goal>
 						</goals>
@@ -95,5 +93,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<version>6.2</version>
+	<version>7.0</version>
 </project>

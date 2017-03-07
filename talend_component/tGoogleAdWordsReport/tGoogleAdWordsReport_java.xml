@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <COMPONENT> 
-  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="6.2" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20170108" STARTABLE="true"> 
+  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="7.0" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20170307" STARTABLE="true"> 
     <SIGNATURE/> 
   </HEADER>  
   <FAMILIES> 
@@ -108,14 +108,14 @@
       <DEFAULT>true</DEFAULT> 
     </PARAMETER>  
     <PARAMETER FIELD="TEXT" NAME="KEEP_CLIENT_KEY" NUM_ROW="40" SHOW_IF="KEEP_CLIENT == 'true'"/>  
-    <PARAMETER NAME="RELEASE_LABEL" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
-      <DEFAULT>Release: 6.2 build at: 20170108</DEFAULT>
+    <PARAMETER NAME="RELEASE_LABEL_20170307" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
+      <DEFAULT>Release: 7.0 build at: 20170307</DEFAULT>
     </PARAMETER>
   </ADVANCED_PARAMETERS>  
   <CODEGENERATION> 
     <IMPORTS> 
-      <IMPORT NAME="cimt-talendcomp-google-adwordsreport" MODULE="cimt-talendcomp-google-adwordsreport-6.2.jar" REQUIRED="true"/>
-      <IMPORT NAME="ads-lib" MODULE="ads-lib-2.22.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="cimt-talendcomp-google-adwordsreport" MODULE="cimt-talendcomp-google-adwordsreport-7.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="ads-lib" MODULE="ads-lib-3.1.1.jar" REQUIRED="true"/>
       <IMPORT NAME="guava" MODULE="guava-20.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guice" MODULE="guice-4.0.jar" REQUIRED="true"/>
       <IMPORT NAME="javax.inject" MODULE="javax.inject-1.jar" REQUIRED="true"/>
@@ -132,10 +132,9 @@
       <IMPORT NAME="google-api-client" MODULE="google-api-client-1.22.0.jar" REQUIRED="true"/>
       <IMPORT NAME="google-http-client-jackson2" MODULE="google-http-client-jackson2-1.22.0.jar" REQUIRED="true"/>
       <IMPORT NAME="google-http-client" MODULE="google-http-client-1.22.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="adwords-axis" MODULE="adwords-axis-2.22.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="ads-lib-axis" MODULE="ads-lib-axis-2.22.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="adwords-axis" MODULE="adwords-axis-3.1.1.jar" REQUIRED="true"/>
+      <IMPORT NAME="ads-lib-axis" MODULE="ads-lib-axis-3.1.1.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-discovery" MODULE="commons-discovery-0.4.jar" REQUIRED="true"/>
-      <IMPORT NAME="commons-httpclient" MODULE="commons-httpclient-3.1.jar" REQUIRED="true"/>
       <IMPORT NAME="jaxrpc-api" MODULE="jaxrpc-api-1.1.jar" REQUIRED="true"/>
       <IMPORT NAME="axis" MODULE="axis-1.4.jar" REQUIRED="true"/>
       <IMPORT NAME="wsdl4j" MODULE="wsdl4j-1.6.2.jar" REQUIRED="true"/>
