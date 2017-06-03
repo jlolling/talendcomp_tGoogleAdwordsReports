@@ -71,11 +71,11 @@
 %>
     // start creating client
 <% if ("true".equals(keepClient)) {%>
-	de.cimt.talendcomp.google.adwords.AdWordsReport <%=cid%> = de.cimt.talendcomp.google.adwords.AdWordsReport.getFromCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName);
+	de.jlo.talendcomp.google.adwords.AdWordsReport <%=cid%> = de.jlo.talendcomp.google.adwords.AdWordsReport.getFromCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName);
 	if (<%=cid%> == null) {
-		<%=cid%> = new de.cimt.talendcomp.google.adwords.AdWordsReport();
+		<%=cid%> = new de.jlo.talendcomp.google.adwords.AdWordsReport();
 <% } else {%>
-	de.cimt.talendcomp.google.adwords.AdWordsReport <%=cid%> = new de.cimt.talendcomp.google.adwords.AdWordsReport;
+	de.jlo.talendcomp.google.adwords.AdWordsReport <%=cid%> = new de.jlo.talendcomp.google.adwords.AdWordsReport;
 <% }%>
 <% if (useServiceAccount) { %>
         // setup credentials with service account
@@ -106,7 +106,7 @@
 		}
 		globalMap.put("<%=cid%>", <%=cid%>);
 <% if ("true".equals(keepClient)) {%>
-		de.cimt.talendcomp.google.adwords.AdWordsReport.putIntoCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName, <%=cid%>);
+		de.jlo.talendcomp.google.adwords.AdWordsReport.putIntoCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName, <%=cid%>);
 	}
 <% } %>
     globalMap.put("<%=cid%>_ERROR_CODE", 0);
@@ -133,7 +133,7 @@
     <%=cid%>.setAWQLWhereClause(<%=awqlWhereClause%>);
 <%  } %>
 <%  if (downloadAsFile == false) { %>
-	de.cimt.talendcomp.google.adwords.ReportResultParser parser_<%=cid%> = new de.cimt.talendcomp.google.adwords.ReportResultParser();
+	de.jlo.talendcomp.google.adwords.ReportResultParser parser_<%=cid%> = new de.jlo.talendcomp.google.adwords.ReportResultParser();
 <%  } %>
     try {
     	<%=cid%>.executeQuery();
@@ -141,7 +141,7 @@
 <%  if (downloadAsFile) { %>
     	<%=cid%>.downloadAsFile();
     	if (<%=unarchiveFile%> && <%=cid%>.downloadIsAnArchive()) {
-    		globalMap.put("<%=cid%>_DOWNLOAD_FILEPATH", de.cimt.talendcomp.google.adwords.AdWordsReport.unzip(<%=cid%>.getReportDownloadFilePath(), <%=removeArchiveFile%>));
+    		globalMap.put("<%=cid%>_DOWNLOAD_FILEPATH", de.jlo.talendcomp.google.adwords.AdWordsReport.unzip(<%=cid%>.getReportDownloadFilePath(), <%=removeArchiveFile%>));
     	} else {
 	    	globalMap.put("<%=cid%>_DOWNLOAD_FILEPATH", <%=cid%>.getReportDownloadFilePath());
     	}
@@ -191,7 +191,7 @@
 					<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
 <%              } else { %>
 	    	        try {
-						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.cimt.talendcomp.google.adwords.Util.convertToDatatype(
+						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
 								<%=cid%>_value_<%=index%>, 
 								"<%=col.getTalendType().substring(3)%>", 
 								<%=((col.getPattern() != null && col.getPattern().isEmpty() == false) ? col.getPattern() : numberFormatLocale)%>);
@@ -205,7 +205,7 @@
 				<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
 <%                  } else { %>
 	    	        try {
-						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.cimt.talendcomp.google.adwords.Util.convertToDatatype(
+						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
 								<%=cid%>_value_<%=index%>, 
 								"<%=col.getTalendType().substring(3)%>", 
 								<%=((col.getPattern() != null && col.getPattern().isEmpty() == false) ? col.getPattern() : numberFormatLocale)%>);
@@ -219,7 +219,7 @@
 					<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
 <%              } else { %>
 	    	        try {
-						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.cimt.talendcomp.google.adwords.Util.convertToDatatype(
+						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
 								<%=cid%>_value_<%=index%>, 
 								"<%=col.getTalendType().substring(3)%>", 
 								<%=((col.getPattern() != null && col.getPattern().isEmpty() == false) ? col.getPattern() : numberFormatLocale)%>);
