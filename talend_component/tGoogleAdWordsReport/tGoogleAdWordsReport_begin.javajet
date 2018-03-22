@@ -23,6 +23,7 @@
     String developerToken = ElementParameterParser.getValue(node, "__DEVELOPER_TOKEN__");
     String clientCustomerId = ElementParameterParser.getValue(node, "__ADWORDS_CUSTOMER_ID__");
 	String timeOffset = ElementParameterParser.getValue(node, "__TIME_OFFSET__");
+	String timeout = ElementParameterParser.getValue(node, "__DOWNLOAD_TIMEOUT__");
     boolean dieOnError = "true".equals(ElementParameterParser.getValue(node, "__DIE_ON_ERROR__"));
 	String keepClient = ElementParameterParser.getValue(node, "__KEEP_CLIENT__");
 	String keepClientName = ElementParameterParser.getValue(node, "__KEEP_CLIENT_KEY__");
@@ -87,8 +88,11 @@
         <%=cid%>.setUseClientId(true);
 		<%=cid%>.setClientSecretFile(<%=clientSecretFile%>);
 <% } %> 
-<% if (timeOffset != null && timeOffset.trim().isEmpty() == false) {%>
+<% if (timeOffset != null && timeOffset.trim().isEmpty() == false) { %>
     	<%=cid%>.setTimeMillisOffsetToPast(<%=timeOffset%>);
+<% }%>
+<% if (timeout != null && timeout.trim().isEmpty() == false) { %>
+    	<%=cid%>.setReportDownloadTimeoutMillis(<%=timeout%>);
 <% }%>
         <%=cid%>.setDeveloperToken(<%=developerToken%>);
         <%=cid%>.setUserEmail(<%=adWordsAccountEmail%>);

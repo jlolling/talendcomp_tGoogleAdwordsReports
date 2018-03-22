@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <COMPONENT> 
-  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.0" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20180309" STARTABLE="true"> 
+  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.1" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20180322" STARTABLE="true"> 
     <SIGNATURE/> 
   </HEADER>  
   <FAMILIES> 
@@ -104,17 +104,20 @@
     <PARAMETER FIELD="TEXT" NAME="TIME_OFFSET" NUM_ROW="15"> 
       <DEFAULT>10000</DEFAULT> 
     </PARAMETER>  
+    <PARAMETER FIELD="TEXT" NAME="DOWNLOAD_TIMEOUT" NUM_ROW="20"> 
+      <DEFAULT>10000</DEFAULT> 
+    </PARAMETER>  
     <PARAMETER FIELD="CHECK" NAME="KEEP_CLIENT" NUM_ROW="40"> 
       <DEFAULT>true</DEFAULT> 
     </PARAMETER>  
     <PARAMETER FIELD="TEXT" NAME="KEEP_CLIENT_KEY" NUM_ROW="40" SHOW_IF="KEEP_CLIENT == 'true'"/>  
-    <PARAMETER NAME="RELEASE_LABEL_20180309" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
-      <DEFAULT>Release: 8.0 build at: 20180309</DEFAULT>
+    <PARAMETER NAME="RELEASE_LABEL_20180322" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
+      <DEFAULT>Release: 8.1 build at: 20180322</DEFAULT>
     </PARAMETER>
   </ADVANCED_PARAMETERS>  
   <CODEGENERATION> 
     <IMPORTS> 
-      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.1.jar" REQUIRED="true"/>
       <IMPORT NAME="ads-lib" MODULE="ads-lib-3.12.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guava" MODULE="guava-20.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guice" MODULE="guice-4.0.jar" REQUIRED="true"/>

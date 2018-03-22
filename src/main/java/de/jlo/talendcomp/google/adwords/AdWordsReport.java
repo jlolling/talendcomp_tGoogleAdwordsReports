@@ -78,7 +78,7 @@ public class AdWordsReport {
 	private boolean useClientId = false;
 	private String clientCustomerId = null;
 	private String refreshToken = null;
-	private String userAgent = "de.jlo.talendcomp.google.adwords.AdWordsReports:V7.1";
+	private String userAgent = "de.jlo.talendcomp.google.adwords.AdWordsReports:V8.1";
 	private String developerToken = null;
 	private String adwordsPropertyFilePath = null;
 	private boolean usePropertyFile = false;
@@ -88,7 +88,7 @@ public class AdWordsReport {
 	private String endDateStr = null;
 	private boolean useAWQL = false;
 	private String awql = null;
-	private int reportDownloadTimeout = 3000;
+	private int reportDownloadTimeoutMillis = 10000;
 	private String downloadDir = null;
 	private String reportName = null;
 	private String reportDownloadFilePath = null;
@@ -303,7 +303,7 @@ public class AdWordsReport {
 	    // because we do not change anything in the configuration
 	    session.setValidateOnly(true);
 		ReportDownloader downloader = new ReportDownloader(session);
-		downloader.setReportDownloadTimeout(reportDownloadTimeout);
+		downloader.setReportDownloadTimeout(reportDownloadTimeoutMillis);
 		if (sendReportAsAWQL && useAWQL == false) {
 			if (fields == null) {
 				throw new IllegalStateException("No fields has been set!");
@@ -783,6 +783,16 @@ public class AdWordsReport {
 
 	public String getFields() {
 		return fields;
+	}
+
+	public int getReportDownloadTimeoutMillis() {
+		return reportDownloadTimeoutMillis;
+	}
+
+	public void setReportDownloadTimeoutMillis(Integer reportDownloadTimeoutMillis) {
+		if (reportDownloadTimeoutMillis != null) {
+			this.reportDownloadTimeoutMillis = reportDownloadTimeoutMillis;
+		}
 	}
 
 }
