@@ -413,7 +413,7 @@ public class AdWordsReport {
 		awql = sb.toString();
 	}
 	
-	private ReportDefinition setupReportDefinition() {
+	private ReportDefinition setupReportDefinition() throws Exception {
 	    if (isEmpty(startDateStr)) {
 	    	throw new IllegalStateException("Start date is not set");
 	    }
@@ -452,11 +452,15 @@ public class AdWordsReport {
 		}
 	}
 	
-	private ReportDefinitionReportType getReportDefinitionType() {
+	private ReportDefinitionReportType getReportDefinitionType() throws Exception {
 		if (reportType == null) {
 			throw new IllegalStateException("The report-type must be set!");
 		}
-		return ReportDefinitionReportType.fromValue(reportType);
+		try {
+			return ReportDefinitionReportType.fromValue(reportType);
+		} catch (Throwable t) {
+			throw new Exception("Not supported report type: " + reportType, t);
+		}
 	}
 	
 	private List<String> buildFieldList() {

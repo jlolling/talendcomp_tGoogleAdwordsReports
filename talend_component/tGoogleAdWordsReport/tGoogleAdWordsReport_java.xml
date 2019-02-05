@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <COMPONENT> 
-  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.2" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20190131" STARTABLE="true"> 
+  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.3" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20190205" STARTABLE="true"> 
     <SIGNATURE/> 
   </HEADER>  
   <FAMILIES> 
@@ -111,13 +111,13 @@
       <DEFAULT>true</DEFAULT> 
     </PARAMETER>  
     <PARAMETER FIELD="TEXT" NAME="KEEP_CLIENT_KEY" NUM_ROW="40" SHOW_IF="KEEP_CLIENT == 'true'"/>  
-    <PARAMETER NAME="RELEASE_LABEL_20190131" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
-      <DEFAULT>Release: 8.2 build at: 20190131</DEFAULT>
+    <PARAMETER NAME="RELEASE_LABEL_20190205" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
+      <DEFAULT>Release: 8.3 build at: 20190205</DEFAULT>
     </PARAMETER>
   </ADVANCED_PARAMETERS>  
   <CODEGENERATION> 
     <IMPORTS> 
-      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.2.jar" REQUIRED="true"/>
+      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.3.jar" REQUIRED="true"/>
       <IMPORT NAME="ads-lib" MODULE="ads-lib-4.1.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guava" MODULE="guava-20.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guice" MODULE="guice-4.0.jar" REQUIRED="true"/>
