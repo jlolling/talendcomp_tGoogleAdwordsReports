@@ -116,8 +116,12 @@
     globalMap.put("<%=cid%>_ERROR_CODE", 0);
     // build the report
     <%=cid%>.deliverTotalsDataset(<%=deliverTotalsDataset%>);
-    <%=cid%>.setDownloadDir(<%=downloadDir%>);
 <%  if (downloadAsFile) { %>
+	 String <%=cid%>_downloadDir = <%=downloadDir%>;
+	 if (<%=cid%>_downloadDir == null || <%=cid%>_downloadDir.trim().isEmpty()) {
+	 	throw new Exception("If option <download as file> is set the download dir must be set!");
+	 }
+    <%=cid%>.setDownloadDir(<%=cid%>_downloadDir);
     <%=cid%>.setDownloadFormat("<%=downloadFormat%>");
 <%  } else { %>
     <%=cid%>.setDownloadFormat("CSV");

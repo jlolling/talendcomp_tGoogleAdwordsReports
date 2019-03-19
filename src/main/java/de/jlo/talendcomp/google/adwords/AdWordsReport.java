@@ -514,16 +514,6 @@ public class AdWordsReport {
 		return dateStr;
 	}
 
-	public String getReportDownloadFilePath() {
-		return reportDownloadFilePath;
-	}
-
-	public void setReportDownloadFilePath(String reportDownloadFilePath) {
-		if (isEmpty(reportDownloadFilePath) == false) {
-			this.reportDownloadFilePath = reportDownloadFilePath;
-		}
-	}
-	
 	public static boolean isEmpty(String s) {
 		return s == null || s.trim().isEmpty();
 	}
@@ -797,6 +787,10 @@ public class AdWordsReport {
 		if (reportDownloadTimeoutMillis != null) {
 			this.reportDownloadTimeoutMillis = reportDownloadTimeoutMillis;
 		}
+	}
+
+	public String getReportDownloadFilePath() {
+		return reportDownloadFilePath;
 	}
 
 }
