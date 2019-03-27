@@ -96,6 +96,7 @@ public class AdWordsReport {
 	private boolean debug = true;
 	private ReportDefinition reportDefinition;
 	private boolean deliverTotalsDataset = false;
+	private boolean includeZeroImpressions = false;
 	private DownloadFormat downloadFormat = DownloadFormat.CSV;
 	private int httpStatus = 0;
 	private ReportDownloadResponse response = null;
@@ -298,6 +299,7 @@ public class AdWordsReport {
 	    ReportingConfiguration reportingConfiguration = new ReportingConfiguration.Builder()
 	        .skipReportHeader(true)
 	        .skipReportSummary(!deliverTotalsDataset)
+	        .includeZeroImpressions(includeZeroImpressions)
 	        .build();
 	    session.setReportingConfiguration(reportingConfiguration);
 	    // because we do not change anything in the configuration
@@ -791,6 +793,16 @@ public class AdWordsReport {
 
 	public String getReportDownloadFilePath() {
 		return reportDownloadFilePath;
+	}
+
+	public boolean isIncludeZeroImpressions() {
+		return includeZeroImpressions;
+	}
+
+	public void setIncludeZeroImpressions(Boolean includeZeroImpressions) {
+		if (includeZeroImpressions != null) {
+			this.includeZeroImpressions = includeZeroImpressions.booleanValue();
+		}
 	}
 
 }

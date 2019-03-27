@@ -12,19 +12,19 @@
 	" 
 %>
 <% 
-    CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
-    INode node = (INode) codeGenArgument.getArgument();
-    String cid = node.getUniqueName();
-    boolean useServiceAccount = "SERVICE_ACCOUNT".equals(ElementParameterParser.getValue(node, "__AUTHENTICATION_METHOD__"));
+	CodeGeneratorArgument codeGenArgument = (CodeGeneratorArgument) argument;
+	INode node = (INode) codeGenArgument.getArgument();
+	String cid = node.getUniqueName();
+	boolean useServiceAccount = "SERVICE_ACCOUNT".equals(ElementParameterParser.getValue(node, "__AUTHENTICATION_METHOD__"));
 	String serviceAccountEmail = ElementParameterParser.getValue(node, "__SERVICE_ACCOUNT_EMAIL__");
 	String keyFile = ElementParameterParser.getValue(node, "__KEY_FILE__");
-    String clientSecretFile = ElementParameterParser.getValue(node, "__CLIENT_SECRET_FILE__");
-    String adWordsAccountEmail = ElementParameterParser.getValue(node, "__ADWORDS_ACCOUNT_EMAIL__");
-    String developerToken = ElementParameterParser.getValue(node, "__DEVELOPER_TOKEN__");
-    String clientCustomerId = ElementParameterParser.getValue(node, "__ADWORDS_CUSTOMER_ID__");
+	String clientSecretFile = ElementParameterParser.getValue(node, "__CLIENT_SECRET_FILE__");
+	String adWordsAccountEmail = ElementParameterParser.getValue(node, "__ADWORDS_ACCOUNT_EMAIL__");
+	String developerToken = ElementParameterParser.getValue(node, "__DEVELOPER_TOKEN__");
+	String clientCustomerId = ElementParameterParser.getValue(node, "__ADWORDS_CUSTOMER_ID__");
 	String timeOffset = ElementParameterParser.getValue(node, "__TIME_OFFSET__");
 	String timeout = ElementParameterParser.getValue(node, "__DOWNLOAD_TIMEOUT__");
-    boolean dieOnError = "true".equals(ElementParameterParser.getValue(node, "__DIE_ON_ERROR__"));
+	boolean dieOnError = "true".equals(ElementParameterParser.getValue(node, "__DIE_ON_ERROR__"));
 	String keepClient = ElementParameterParser.getValue(node, "__KEEP_CLIENT__");
 	String keepClientName = ElementParameterParser.getValue(node, "__KEEP_CLIENT_KEY__");
 	keepClientName = keepClientName != null && keepClientName.isEmpty() == false ? keepClientName : "\"\"";
@@ -50,19 +50,20 @@
 	boolean downloadAsFile = "true".equals(ElementParameterParser.getValue(node, "__DOWNLOAD_AS_FILE__"));
 	String downloadDir = ElementParameterParser.getValue(node, "__DOWNLOAD_DIR__");
 	boolean deliverTotalsDataset = "true".equals(ElementParameterParser.getValue(node, "__DELIVER_TOTALS_DATASET__"));
+	boolean includeZeroImpressions = "true".equals(ElementParameterParser.getValue(node, "__INCLUDE_ZERO_IMPRESSIONS__"));
 	String downloadFormat = ElementParameterParser.getValue(node, "__DOWNLOAD_FORMAT__");
 	boolean unarchiveFile = "true".equals(ElementParameterParser.getValue(node, "__UNARCHIVE__"));
 	String removeArchiveFile = ElementParameterParser.getValue(node, "__REMOVE_SOURCE__");
-    String connName = null;
-    List<IMetadataColumn> listColumns = null;
-    if (node.getOutgoingConnections().size() > 0) {
-        IConnection conn = node.getOutgoingConnections().get(0);
-        if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {
-		    IMetadataTable metadata = conn.getMetadataTable();
-		    listColumns = metadata.getListColumns();
-		    connName = conn.getName();
-        }
-    }
+	String connName = null;
+	List<IMetadataColumn> listColumns = null;
+	if (node.getOutgoingConnections().size() > 0) {
+		IConnection conn = node.getOutgoingConnections().get(0);
+		if (conn.getLineStyle().hasConnectionCategory(IConnectionCategory.DATA)) {
+			IMetadataTable metadata = conn.getMetadataTable();
+			listColumns = metadata.getListColumns();
+			connName = conn.getName();
+		}
+	}
 	String numberFormatLocale = ElementParameterParser.getValue(node, "__NUMBERFORMAT_LOCALE__");
 	if (numberFormatLocale != null && numberFormatLocale.isEmpty() == false) {
 		numberFormatLocale = "\"" + numberFormatLocale + "\"";
@@ -70,7 +71,7 @@
 		numberFormatLocale = "null";
 	}
 %>
-    // start creating client
+	// start creating client
 <% if ("true".equals(keepClient)) {%>
 	de.jlo.talendcomp.google.adwords.AdWordsReport <%=cid%> = de.jlo.talendcomp.google.adwords.AdWordsReport.getFromCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName);
 	if (<%=cid%> == null) {
@@ -79,111 +80,112 @@
 	de.jlo.talendcomp.google.adwords.AdWordsReport <%=cid%> = new de.jlo.talendcomp.google.adwords.AdWordsReport;
 <% }%>
 <% if (useServiceAccount) { %>
-        // setup credentials with service account
-        <%=cid%>.setUseServiceAccount(true);
-		<%=cid%>.setServiceAccountIdEmail(<%=serviceAccountEmail%>);
-		<%=cid%>.setKeyFile(<%=keyFile%>);
+	// setup credentials with service account
+	<%=cid%>.setUseServiceAccount(true);
+	<%=cid%>.setServiceAccountIdEmail(<%=serviceAccountEmail%>);
+	<%=cid%>.setKeyFile(<%=keyFile%>);
 <% } else { %>
-        // setup with Client ID for native application
-        <%=cid%>.setUseClientId(true);
-		<%=cid%>.setClientSecretFile(<%=clientSecretFile%>);
+	// setup with Client ID for native application
+	<%=cid%>.setUseClientId(true);
+	<%=cid%>.setClientSecretFile(<%=clientSecretFile%>);
 <% } %> 
 <% if (timeOffset != null && timeOffset.trim().isEmpty() == false) { %>
-    	<%=cid%>.setTimeMillisOffsetToPast(<%=timeOffset%>);
+	<%=cid%>.setTimeMillisOffsetToPast(<%=timeOffset%>);
 <% }%>
 <% if (timeout != null && timeout.trim().isEmpty() == false) { %>
-    	<%=cid%>.setReportDownloadTimeoutMillis(<%=timeout%>);
+	<%=cid%>.setReportDownloadTimeoutMillis(<%=timeout%>);
 <% }%>
-        <%=cid%>.setDeveloperToken(<%=developerToken%>);
-        <%=cid%>.setUserEmail(<%=adWordsAccountEmail%>);
-        <%=cid%>.setClientCustomerId(<%=clientCustomerId%>);
-		try {
-		    // initialize session
-			<%=cid%>.initializeAdWordsSession();
-		} catch (Exception e) {
-			globalMap.put("<%=cid%>_ERROR_MESSAGE", e.getMessage());
+	<%=cid%>.setDeveloperToken(<%=developerToken%>);
+	<%=cid%>.setUserEmail(<%=adWordsAccountEmail%>);
+	<%=cid%>.setClientCustomerId(<%=clientCustomerId%>);
+	try {
+		// initialize session
+		<%=cid%>.initializeAdWordsSession();
+	} catch (Exception e) {
+		globalMap.put("<%=cid%>_ERROR_MESSAGE", e.getMessage());
 <% if (dieOnError) { %>
-			throw e;
+		throw e;
 <% } else { %>
-			e.printStackTrace();
+		e.printStackTrace();
 <% } %>	
-		}
-		globalMap.put("<%=cid%>", <%=cid%>);
+	}
+	globalMap.put("<%=cid%>", <%=cid%>);
 <% if ("true".equals(keepClient)) {%>
 		de.jlo.talendcomp.google.adwords.AdWordsReport.putIntoCache(<%=adWordsAccountEmail%> + <%=clientCustomerId%> + <%=keepClientName%> + "<%=cid%>" + jobName, <%=cid%>);
 	}
 <% } %>
-    globalMap.put("<%=cid%>_ERROR_CODE", 0);
-    // build the report
-    <%=cid%>.deliverTotalsDataset(<%=deliverTotalsDataset%>);
-<%  if (downloadAsFile) { %>
-	 String <%=cid%>_downloadDir = <%=downloadDir%>;
-	 if (<%=cid%>_downloadDir == null || <%=cid%>_downloadDir.trim().isEmpty()) {
+   globalMap.put("<%=cid%>_ERROR_CODE", 0);
+   // build the report
+   <%=cid%>.deliverTotalsDataset(<%=deliverTotalsDataset%>);
+   <%=cid%>.setIncludeZeroImpressions(<%=includeZeroImpressions%>);
+<% if (downloadAsFile) { %>
+	String <%=cid%>_downloadDir = <%=downloadDir%>;
+	if (<%=cid%>_downloadDir == null || <%=cid%>_downloadDir.trim().isEmpty()) {
 	 	throw new Exception("If option <download as file> is set the download dir must be set!");
-	 }
-    <%=cid%>.setDownloadDir(<%=cid%>_downloadDir);
-    <%=cid%>.setDownloadFormat("<%=downloadFormat%>");
-<%  } else { %>
-    <%=cid%>.setDownloadFormat("CSV");
-<%  } %>
-<%  if (reportName != null && reportName.trim().isEmpty() == false) { %>
+	}
+   <%=cid%>.setDownloadDir(<%=cid%>_downloadDir);
+   <%=cid%>.setDownloadFormat("<%=downloadFormat%>");
+<% } else { %>
+   <%=cid%>.setDownloadFormat("CSV");
+<% } %>
+<% if (reportName != null && reportName.trim().isEmpty() == false) { %>
 	<%=cid%>.setReportName(<%=reportName%>);
-<%  } %>
-    <%=cid%>.setUseAWQL(<%=useAWQL%>);
-<%  if (useAWQL) { %>
+<% } %>
+   <%=cid%>.setUseAWQL(<%=useAWQL%>);
+<% if (useAWQL) { %>
 	<%=cid%>.setAwql(<%=awql%>);
-<%  } else { %>
+<% } else { %>
 	<%=cid%>.setReportType(<%=reportType%>);
 	<%=cid%>.setFields(<%=fields%>);
 	<%=cid%>.setStartDate(<%=startDate%>);
 	<%=cid%>.setEndDate(<%=endDate%>);
-    <%=cid%>.sendReportAsAWQL(<%=sendReportAsAWQL%>);
-    <%=cid%>.setAWQLWhereClause(<%=awqlWhereClause%>);
-<%  } %>
-<%  if (downloadAsFile == false) { %>
+   <%=cid%>.sendReportAsAWQL(<%=sendReportAsAWQL%>);
+   <%=cid%>.setAWQLWhereClause(<%=awqlWhereClause%>);
+<% } %>
+<% if (downloadAsFile == false) { %>
 	de.jlo.talendcomp.google.adwords.ReportResultParser parser_<%=cid%> = new de.jlo.talendcomp.google.adwords.ReportResultParser();
-<%  } %>
-    try {
+<% } %>
+   try {
     	<%=cid%>.executeQuery();
     	globalMap.put("<%=cid%>_REPORT_TYPE", <%=cid%>.getReportType());
-<%  if (downloadAsFile) { %>
-    	<%=cid%>.downloadAsFile();
+<%	if (downloadAsFile) { %>
+		<%=cid%>.downloadAsFile();
     	if (<%=unarchiveFile%> && <%=cid%>.downloadIsAnArchive()) {
     		globalMap.put("<%=cid%>_DOWNLOAD_FILEPATH", de.jlo.talendcomp.google.adwords.AdWordsReport.unzip(<%=cid%>.getReportDownloadFilePath(), <%=removeArchiveFile%>));
     	} else {
 	    	globalMap.put("<%=cid%>_DOWNLOAD_FILEPATH", <%=cid%>.getReportDownloadFilePath());
     	}
-<%  } else { %>
-        parser_<%=cid%>.setFields(<%=cid%>.getFields());
+<% } else { %>
+      parser_<%=cid%>.setFields(<%=cid%>.getFields());
 		parser_<%=cid%>.initialize(<%=cid%>.getResponseInputStream());
-<%  } %>
-    } catch (Exception e) {
+<% } %>
+	} catch (Exception e) {
     	globalMap.put("<%=cid%>_ERROR_MESSAGE", e.getMessage());
     	throw e;
-    }
-<%  if (downloadAsFile == false && connName != null) { %>
-    // iterate through the data...
+	}
+<% if (downloadAsFile == false && connName != null) { %>
+   // iterate through the data...
 	int countLines_<%=cid%> = 0;
 	boolean warningAboutSchemaDone = false;
 	while (true) {
-	    try {
-		    // hasNextDataset() executes a new query if needed
-		    if (parser_<%=cid%>.hasNextPlainRecord() == false) {
-		        parser_<%=cid%>.close();
+		try {
+			// hasNextDataset() executes a new query if needed
+			if (parser_<%=cid%>.hasNextPlainRecord() == false) {
+				parser_<%=cid%>.close();
 		    	break;
-		    }
-	    } catch (Exception e) {
+		   }
+	   } catch (Exception e) {
 			globalMap.put("<%=cid%>_ERROR_MESSAGE", e.getMessage());
 			throw e;
-	    }
-	    // next row
+	   }
+	   // next row
 		java.util.List<String> dataset_<%=cid%> = parser_<%=cid%>.getNextPlainRecord();
 		// create new row to avoid setting null values explicitly
 		<%=connName%> = new <%=connName%>Struct();
-<%	int index = 0;
-    if (listColumns != null) {
-        for (IMetadataColumn col : listColumns) {
-        	String javaClassName = JavaTypesManager.getJavaTypeFromId(col.getTalendType()).getNullableClass().getName(); %>
+<%		int index = 0;
+		if (listColumns != null) {
+			for (IMetadataColumn col : listColumns) {
+        		String javaClassName = JavaTypesManager.getJavaTypeFromId(col.getTalendType()).getNullableClass().getName(); %>
 		// fill schema field <%=col.getLabel()%>
 		if (dataset_<%=cid%>.size() > <%=index%>) {
 			// size check to avoid crashes if the schema does not fit absolutely to the returned dimensions and metrics
@@ -195,10 +197,10 @@
 				    // we cannot set a date value for the totals row
 					<%=connName%>.<%=col.getLabel()%> = null;
 				} else {
-<%              if ("java.lang.String".equals(javaClassName)) { %>
+<%						if ("java.lang.String".equals(javaClassName)) { %>
 					<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
-<%              } else { %>
-	    	        try {
+<%						} else { %>
+					try {
 						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
 								<%=cid%>_value_<%=index%>, 
 								"<%=col.getTalendType().substring(3)%>", 
@@ -206,27 +208,13 @@
 					} catch (Exception e) {
 						throw new Exception("Convert field: <%=connName%>.<%=col.getLabel()%> value=[" + <%=cid%>_value_<%=index%> + "] line=" + countLines_<%=cid%> + " failed:" + e.getMessage(), e);		
 					}
-<%              } %>                
+<%						} %>                
 				}
-<%              } else {
-                    if ("java.lang.String".equals(javaClassName)) { %>
-				<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
-<%                  } else { %>
-	    	        try {
-						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
-								<%=cid%>_value_<%=index%>, 
-								"<%=col.getTalendType().substring(3)%>", 
-								<%=((col.getPattern() != null && col.getPattern().isEmpty() == false) ? col.getPattern() : numberFormatLocale)%>);
-					} catch (Exception e) {
-						throw new Exception("Convert field: <%=connName%>.<%=col.getLabel()%> value=[" + <%=cid%>_value_<%=index%> + "] line=" + countLines_<%=cid%> + " failed:" + e.getMessage(), e);		
-					}
-<%                  } %>                
-<%              } %>
-<%          } else {
-                if ("java.lang.String".equals(javaClassName)) { %>
+<%					} else {
+						if ("java.lang.String".equals(javaClassName)) { %>
 					<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
-<%              } else { %>
-	    	        try {
+<%						} else { %>
+					try {
 						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
 								<%=cid%>_value_<%=index%>, 
 								"<%=col.getTalendType().substring(3)%>", 
@@ -234,14 +222,28 @@
 					} catch (Exception e) {
 						throw new Exception("Convert field: <%=connName%>.<%=col.getLabel()%> value=[" + <%=cid%>_value_<%=index%> + "] line=" + countLines_<%=cid%> + " failed:" + e.getMessage(), e);		
 					}
-<%              } %>                
-<%          } %>
+<%						} %>                
+<%					} %>
+<%          } else {
+					if ("java.lang.String".equals(javaClassName)) { %>
+					<%=connName%>.<%=col.getLabel()%> = <%=cid%>_value_<%=index%>;
+<%					} else { %>
+					try {
+						<%=connName%>.<%=col.getLabel()%> = (<%=javaClassName%>) de.jlo.talendcomp.google.adwords.Util.convertToDatatype(
+								<%=cid%>_value_<%=index%>, 
+								"<%=col.getTalendType().substring(3)%>", 
+								<%=((col.getPattern() != null && col.getPattern().isEmpty() == false) ? col.getPattern() : numberFormatLocale)%>);
+					} catch (Exception e) {
+						throw new Exception("Convert field: <%=connName%>.<%=col.getLabel()%> value=[" + <%=cid%>_value_<%=index%> + "] line=" + countLines_<%=cid%> + " failed:" + e.getMessage(), e);		
+					}
+<%					} %>                
+<%				} %>
 			} // if (<%=cid%>_value_<%=index%> != null)
 		} else if (warningAboutSchemaDone == false) {
 			warningAboutSchemaDone = true;
 			System.err.println("Warning, the schema contains more columns as the mfc result provides (current index=<%=index%>). Please check this!");
 		}
-<%      index++; %>
-<%		} // for (IMetadataColumn col : listColumns) %>
-<%	} // if (listColumns != null && conn != null) %>
+<%				index++; %>
+<%			} // for (IMetadataColumn col : listColumns) %>
+<%		} // if (listColumns != null && conn != null) %>
 <% } %>
