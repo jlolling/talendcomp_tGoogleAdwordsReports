@@ -182,7 +182,7 @@ public class AdWordsReport {
 				throw new IllegalStateException("Client-ID not set or null");
 			}
 			if (clientSecretFile == null) {
-				throw new IllegalStateException("Client-ID not set or null");
+				throw new IllegalStateException("Client secret file not set or null");
 			}
 			oAuth2Credential = new OfflineCredentials.Builder()
 		        .forApi(Api.ADWORDS)
