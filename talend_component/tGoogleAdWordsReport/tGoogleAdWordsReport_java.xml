@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <COMPONENT> 
-  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.6" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20190327" STARTABLE="true"> 
+  <HEADER PLATEFORM="ALL" SERIAL="" VERSION="8.7" STATUS="PROD" COMPATIBILITY="ALL" AUTHOR="Jan Lolling" RELEASE_DATE="20190925" STARTABLE="true"> 
     <SIGNATURE/> 
   </HEADER>  
   <FAMILIES> 
@@ -114,50 +114,58 @@
       <DEFAULT>true</DEFAULT> 
     </PARAMETER>  
     <PARAMETER FIELD="TEXT" NAME="KEEP_CLIENT_KEY" NUM_ROW="40" SHOW_IF="KEEP_CLIENT == 'true'"/>  
-    <PARAMETER NAME="RELEASE_LABEL_20190327" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
-      <DEFAULT>Release: 8.6 build at: 20190327</DEFAULT>
+    <PARAMETER NAME="RELEASE_LABEL_20190925" FIELD="LABEL" COLOR="0;0;0" NUM_ROW="900">
+      <DEFAULT>Release: 8.7 build at: 20190925</DEFAULT>
     </PARAMETER>
   </ADVANCED_PARAMETERS>  
   <CODEGENERATION> 
     <IMPORTS> 
-      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.6.jar" REQUIRED="true"/>
-      <IMPORT NAME="ads-lib" MODULE="ads-lib-4.4.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="jlo-talendcomp-google-adwordsreport" MODULE="jlo-talendcomp-google-adwordsreport-8.7.jar" REQUIRED="true"/>
+      <IMPORT NAME="ads-lib" MODULE="ads-lib-4.7.0.jar" REQUIRED="true"/>
       <IMPORT NAME="guava" MODULE="guava-20.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="guice" MODULE="guice-4.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="guice" MODULE="guice-4.2.2.jar" REQUIRED="true"/>
       <IMPORT NAME="javax.inject" MODULE="javax.inject-1.jar" REQUIRED="true"/>
       <IMPORT NAME="aopalliance" MODULE="aopalliance-1.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="guice-assistedinject" MODULE="guice-assistedinject-4.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="guice-multibindings" MODULE="guice-multibindings-4.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="guice-assistedinject" MODULE="guice-assistedinject-4.2.2.jar" REQUIRED="true"/>
+      <IMPORT NAME="guice-multibindings" MODULE="guice-multibindings-4.2.2.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-beanutils" MODULE="commons-beanutils-1.9.2.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-configuration" MODULE="commons-configuration-1.10.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-collections" MODULE="commons-collections-3.2.2.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-lang" MODULE="commons-lang-2.6.jar" REQUIRED="true"/>
-      <IMPORT NAME="opencsv" MODULE="opencsv-1.8.jar" REQUIRED="true"/>
+      <IMPORT NAME="opencsv" MODULE="opencsv-4.6.jar" REQUIRED="true"/>
+      <IMPORT NAME="commons-lang3" MODULE="commons-lang3-3.8.1.jar" REQUIRED="true"/>
+      <IMPORT NAME="commons-text" MODULE="commons-text-1.3.jar" REQUIRED="true"/>
+      <IMPORT NAME="commons-collections4" MODULE="commons-collections4-4.2.jar" REQUIRED="true"/>
       <IMPORT NAME="slf4j-api" MODULE="slf4j-api-1.7.7.jar" REQUIRED="true"/>
       <IMPORT NAME="joda-time" MODULE="joda-time-2.8.2.jar" REQUIRED="true"/>
       <IMPORT NAME="google-api-client" MODULE="google-api-client-1.23.0.jar" REQUIRED="true"/>
       <IMPORT NAME="google-http-client-jackson2" MODULE="google-http-client-jackson2-1.23.0.jar" REQUIRED="true"/>
       <IMPORT NAME="google-http-client" MODULE="google-http-client-1.23.0.jar" REQUIRED="true"/>
       <IMPORT NAME="jcommander" MODULE="jcommander-1.48.jar" REQUIRED="true"/>
-      <IMPORT NAME="adwords-axis" MODULE="adwords-axis-4.4.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="ads-lib-axis" MODULE="ads-lib-axis-4.4.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="jaxb-ri" MODULE="jaxb-ri-2.3.2.pom" REQUIRED="true"/>
+      <IMPORT NAME="txw2" MODULE="txw2-2.3.2.jar" REQUIRED="true"/>
+      <IMPORT NAME="javax.annotation-api" MODULE="javax.annotation-api-1.3.2.jar" REQUIRED="true"/>
+      <IMPORT NAME="javax.activation" MODULE="javax.activation-1.2.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="adwords-axis" MODULE="adwords-axis-4.7.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="ads-lib-axis" MODULE="ads-lib-axis-4.7.0.jar" REQUIRED="true"/>
       <IMPORT NAME="commons-discovery" MODULE="commons-discovery-0.4.jar" REQUIRED="true"/>
       <IMPORT NAME="jaxrpc-api" MODULE="jaxrpc-api-1.1.jar" REQUIRED="true"/>
+      <IMPORT NAME="javax.xml.soap-api" MODULE="javax.xml.soap-api-1.4.0.jar" REQUIRED="true"/>
       <IMPORT NAME="axis" MODULE="axis-1.4.jar" REQUIRED="true"/>
       <IMPORT NAME="wsdl4j" MODULE="wsdl4j-1.6.2.jar" REQUIRED="true"/>
       <IMPORT NAME="jackson-databind" MODULE="jackson-databind-2.9.8.jar" REQUIRED="true"/>
       <IMPORT NAME="jackson-annotations" MODULE="jackson-annotations-2.9.0.jar" REQUIRED="true"/>
       <IMPORT NAME="jackson-core" MODULE="jackson-core-2.9.8.jar" REQUIRED="true"/>
-      <IMPORT NAME="httpclient" MODULE="httpclient-4.3.6.jar" REQUIRED="true"/>
-      <IMPORT NAME="httpcore" MODULE="httpcore-4.3.3.jar" REQUIRED="true"/>
-      <IMPORT NAME="commons-logging" MODULE="commons-logging-1.1.3.jar" REQUIRED="true"/>
-      <IMPORT NAME="commons-codec" MODULE="commons-codec-1.6.jar" REQUIRED="true"/>
-      <IMPORT NAME="google-oauth-client-jetty" MODULE="google-oauth-client-jetty-1.28.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="httpclient" MODULE="httpclient-4.5.10.jar" REQUIRED="true"/>
+      <IMPORT NAME="httpcore" MODULE="httpcore-4.4.12.jar" REQUIRED="true"/>
+      <IMPORT NAME="commons-logging" MODULE="commons-logging-1.2.jar" REQUIRED="true"/>
+      <IMPORT NAME="commons-codec" MODULE="commons-codec-1.11.jar" REQUIRED="true"/>
+      <IMPORT NAME="google-oauth-client-jetty" MODULE="google-oauth-client-jetty-1.30.3.jar" REQUIRED="true"/>
       <IMPORT NAME="jetty" MODULE="jetty-6.1.26.jar" REQUIRED="true"/>
       <IMPORT NAME="jetty-util" MODULE="jetty-util-6.1.26.jar" REQUIRED="true"/>
       <IMPORT NAME="servlet-api-2.5" MODULE="servlet-api-2.5-20081211.jar" REQUIRED="true"/>
-      <IMPORT NAME="google-oauth-client-java6" MODULE="google-oauth-client-java6-1.28.0.jar" REQUIRED="true"/>
-      <IMPORT NAME="google-oauth-client" MODULE="google-oauth-client-1.28.0.jar" REQUIRED="true"/>
+      <IMPORT NAME="google-oauth-client-java6" MODULE="google-oauth-client-java6-1.30.3.jar" REQUIRED="true"/>
+      <IMPORT NAME="google-oauth-client" MODULE="google-oauth-client-1.30.3.jar" REQUIRED="true"/>
       <IMPORT NAME="jsr305" MODULE="jsr305-3.0.2.jar" REQUIRED="true"/>
     </IMPORTS> 
   </CODEGENERATION>  
